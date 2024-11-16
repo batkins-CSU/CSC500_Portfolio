@@ -1,37 +1,64 @@
 from ItemToPurchase import ItemToPurchase
+from ShoppingCart import ShoppingCart
 def main():
-    itemsToPurchase = 2
-    itemsPurchased = 0
-    itemsPurchasedHolder = []
-    while itemsPurchased < itemsToPurchase:
-        item = ItemToPurchase()
-        try:
-            item.item_name = input("Enter the item name:\n")
-        except ValueError:
-            print("Invalid input. Please try again.\n")
 
-        try:
-            item.item_price = float(input(f"Enter the item price:\n"))
-        except ValueError:
-            print("Invalid input. Please try again.\n")
+    complete = False
+    shoppingCart = ShoppingCart("John Doe", "February 1, 2020")
 
-        try:
-            item.item_quantity = int(input(f"Enter the item quantity:\n"))
-        except ValueError:
-            print("Invalid input. Please try again.\n")
-
-        itemsPurchased += 1
-        item.print_item_cost()
-        itemsPurchasedHolder.append(item)
+    while not complete:
+        print("MENU")
+        print("a - Add item to cart")
+        print("r - Remove item from cart")
+        print("c - Change item quantity")
+        print("d - Change item description")
+        print("i - Output items' descriptions")
+        print("o - Output shopping cart")
+        print("q - Quit")
         print()
+        choice = input("Choose an option:\n").lower().strip()
+        if choice == 'a':
+            item = prep_item_for_action()
+            shoppingCart.add_item(item)
+        elif choice == 'r':
+            item_name = input("Enter the item name:\n")
+            shoppingCart.remove_item(item_name)
+        elif choice == 'c':
+            item = prep_item_for_action()
+            shoppingCart.modify_item(item)
+        elif choice == 'd':
+            item = prep_item_for_action()
+            shoppingCart.modify_item(item)
+        elif choice == 'i':
+            shoppingCart.print_descriptions()
+        elif choice == 'o':
+            shoppingCart.print_total()
+        elif choice == 'q':
+            complete = True
+        else:
+            print("Invalid input. Please try again.\n")
 
-    print("TOTAL COST")
-    total = 0
-    for item in itemsPurchasedHolder:
-        total += round(item.item_price * item.item_quantity, 2)
-        item.print_item_cost()
 
-    print(f"\nTotal: ${total:.2f}")
+def prep_item_for_action():
+    item = ItemToPurchase()
+    try:
+        item.item_name = input("Enter the item name:\n")
+    except ValueError:
+        print("Invalid input. Please try again.\n")
+    try:
+        item.item_price = float(input(f"Enter the item price:\n"))
+    except ValueError:
+        print("Invalid input. Please try again.\n")
+    try:
+        item.item_quantity = int(input(f"Enter the item quantity:\n"))
+    except ValueError:
+        print("Invalid input. Please try again.\n")
+
+    try:
+        item.item_description = int(input(f"Enter the item description:\n"))
+    except ValueError:
+        print("Invalid input. Please try again.\n")
+    return item
+
 
 if __name__ == '__main__':
     main()

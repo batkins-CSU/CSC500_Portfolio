@@ -4,6 +4,7 @@ class ItemToPurchase (object):
         self.item_name = "none"
         self.item_price = 0.00
         self.item_quantity = 0
+        self.item_description = "none"
 
     def print_item_cost(self):
         print(f"{self.item_name} {round(self.item_quantity, 2):.2f} for ${round(self.item_price, 2):.2f} each = "
