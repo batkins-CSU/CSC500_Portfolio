@@ -3,7 +3,11 @@ from ShoppingCart import ShoppingCart
 def main():
 
     complete = False
-    shoppingCart = ShoppingCart("John Doe", "February 1, 2020")
+    name = input("Enter customer's name:\n")
+    date = input("Enter today's date as a string:\n")
+    print(f"\nCustomer name: {name}")
+    print(f"Today's date: {date}")
+    shoppingCart = ShoppingCart(customer_name=name, current_date=date)
 
     while not complete:
         print("MENU")

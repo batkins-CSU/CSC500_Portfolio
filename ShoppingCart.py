@@ -25,16 +25,12 @@ class ShoppingCart(object):
         for item in self.cart_items:
             if item.item_name != None:
                 if item.item_name == ItemToPurchase.item_name:
-                    # defaults
-                    # self.item_name = "none"
-                    # self.item_price = 0.00
-                    # self.item_quantity = 0
-                    # self.item_description = "none"
-                    if item.item_quantity != 0:
+                    if item.item_quantity != 0 or item.item_quantity != ItemToPurchase.item_quantity:
                         item.item_quantity = ItemToPurchase.item_quantity
-                    if item.item_price != 0.00:
+
+                    if item.item_price != 0.00 or item.item_price != ItemToPurchase.item_price:
                         item.item_price = ItemToPurchase.item_price
-                    if item.item_description != "none":
+                    if item.item_description != "none" or item.item_description != ItemToPurchase.item_description:
                         item.item_description = ItemToPurchase.item_description
                     found = True
 
